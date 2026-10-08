@@ -12,8 +12,9 @@
 		void (async () => {
 			try {
 				const { createWobbleDemo } = await import('./wobble');
-				handle = await createWobbleDemo(canvas);
-				handle.renderer.inspector = new Inspector();
+				// The Inspector drives the debug fields (Parameters tab) and the
+				// Viewer previews registered with .toInspector().
+				handle = await createWobbleDemo(canvas, { inspector: new Inspector() });
 				handle.start();
 			} catch {
 				failed = true;
