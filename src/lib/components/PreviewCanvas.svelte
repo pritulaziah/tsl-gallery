@@ -1,14 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/env';
-	import type { WobbleDemoHandle } from '#lib/demos/wobble';
+	import type { DemoHandle } from '#lib/demos/types';
+	import type { Project } from '#lib/projects';
+
+	let { project }: { project: Project } = $props();
 
 	let canvas: HTMLCanvasElement;
 	let wrap: HTMLDivElement;
 	let ready = $state(false);
 	let failed = $state(false);
 
-	let handle: WobbleDemoHandle | null = null;
+	let handle: DemoHandle | null = null;
 	let loading = false;
 
 	onMount(() => {
@@ -27,8 +30,8 @@
 							loading = true;
 							void (async () => {
 								try {
-									const { createWobbleDemo } = await import('#lib/demos/wobble');
-									handle = await createWobbleDemo(canvas, { preview: true });
+									const create = await project.preview();
+									handle = await create(canvas, { preview: true });
 									ready = true;
 									handle.start();
 								} catch {

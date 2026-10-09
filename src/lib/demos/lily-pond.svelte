@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Inspector } from 'three/addons/inspector/Inspector.js';
-	import type { WobbleDemoHandle } from './wobble';
+	import type { LilyPondDemoHandle } from './lily-pond';
 
 	let canvas: HTMLCanvasElement;
 	let failed = $state(false);
 
 	onMount(() => {
-		let handle: WobbleDemoHandle | null = null;
+		let handle: LilyPondDemoHandle | null = null;
 
 		void (async () => {
 			try {
-				const { createWobbleDemo } = await import('./wobble');
+				const { createLilyPondDemo } = await import('./lily-pond');
 				// The Inspector drives the debug fields (Parameters tab) and the
-				// Viewer previews registered with .toInspector().
-				handle = await createWobbleDemo(canvas, { inspector: new Inspector() });
+				// Viewer previews the final color registered with .toInspector().
+				handle = await createLilyPondDemo(canvas, { inspector: new Inspector() });
 				handle.start();
 			} catch {
 				failed = true;

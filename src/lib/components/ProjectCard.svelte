@@ -9,7 +9,7 @@
 	href={`/experiments/${project.slug}`}
 	class="group block overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 transition duration-300 hover:-translate-y-1 hover:border-slate-600 hover:shadow-xl hover:shadow-sky-500/10"
 >
-	<PreviewCanvas />
+	<PreviewCanvas {project} />
 
 	<div class="p-4">
 		<h3 class="font-semibold text-white transition-colors group-hover:text-sky-400">

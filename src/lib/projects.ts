@@ -1,4 +1,5 @@
 import type { Component } from 'svelte';
+import type { DemoFactory } from './demos/types';
 
 export interface Project {
 	slug: string;
@@ -6,14 +7,17 @@ export interface Project {
 	tags: string[];
 	/** Lazy-loaded full-screen demo component (used on the detail page). */
 	component: () => Promise<{ default: Component<any> }>;
+	/** Lazy-loaded demo factory (used for the card preview). */
+	preview: () => Promise<DemoFactory>;
 }
 
 export const projects: Project[] = [
 	{
-		slug: 'wobble-sphere',
-		title: 'Wobble Sphere',
-		tags: ['webgpu', 'tsl', 'vertex-displacement'],
-		component: () => import('./demos/wobble-sphere.svelte')
+		slug: 'lily-pond',
+		title: 'Lily Pond',
+		tags: ['webgpu', 'tsl', 'water'],
+		component: () => import('./demos/lily-pond.svelte'),
+		preview: () => import('./demos/lily-pond').then((mod) => mod.createLilyPondDemo)
 	}
 ];
 
