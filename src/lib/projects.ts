@@ -18,6 +18,13 @@ export const projects: Project[] = [
 		tags: ['webgpu', 'tsl', 'water'],
 		component: () => import('./demos/lily-pond.svelte'),
 		preview: () => import('./demos/lily-pond').then((mod) => mod.createLilyPondDemo)
+	},
+	{
+		slug: 'scarlet-effect',
+		title: 'Scarlet Effect',
+		tags: ['webgpu', 'tsl', 'gltf'],
+		component: () => import('./demos/scarlet.svelte'),
+		preview: () => import('./demos/scarlet').then((mod) => mod.createScarletDemo)
 	}
 ];
 

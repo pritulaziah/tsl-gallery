@@ -5,6 +5,8 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+	// `.glb` is not a default Vite asset type; serve it as a static URL.
+	assetsInclude: ['**/*.glb'],
 	plugins: [
 		basicSsl({
 			name: 'test',
